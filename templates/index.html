@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🔥 화재 감지 관제센터</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>🔥 화재 감지 실시간 모니터링</h1>
+
+  <img src="/video" alt="화재 감지 화면" />
+
+  
+  <h2 id="status">상태: {{ status }}</h2>
+
+  <audio id="alarm-sound" src="/static/alarm.mp3"></audio>
+  <audio id="tts-sound" src="/static/tts.mp3"></audio>
+
+  <div class="footer">
+    📍  Fire Object Detection YOLOv11-s | JEON HONG SEOK
+  </div>
+
+  <script>
+    let prevStatus = "정상";
+
+    function playSounds() {
+      const alarm = document.getElementById("alarm-sound");
+      const tts = document.getElementById("tts-sound");
+
+      // 처음부터 다시 재생하도록 설정
+      alarm.currentTime = 0;
+      tts.currentTime = 0;
+
+      alarm.play().then(() => {
+        // 알람이 끝나고 나서 TTS 재생 (예: 1.5초 후)
+        setTimeout(() => {
+          tts.play();
+        }, 1500);
+      }).catch(e => {
+        console.log("알람 재생 실패:", e);
+      });
+    }
+
+    setInterval(() => {
+      fetch('/status')
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById("status").innerText = "상태: " + text;
+
+          // 상태 변화가 있을 때만 소리 재생
+          if ((text.includes("화재") || text.includes("연기")) && text !== prevStatus) {
+            playSounds();
+          }
+
+          prevStatus = text;
+        });
+    }, 1000);
+  </script>
+</body>
+</html>
