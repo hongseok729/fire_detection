@@ -22,11 +22,11 @@ fire_project/
 ```
 ---
 
-
+## YOLOv11 
 
 ###  설치 및 데이터 전처리
 
-##  1. 학습 모델 구성 (YOLOv11 + Albumentations)
+
 
 ```python
 !git clone https://github.com/ultralytics/ultralytics.git
@@ -41,7 +41,7 @@ rf = Roboflow(api_key="")  # 환경변수 방식 권장
 project = rf.workspace("").project("fire-smoke-detection")
 dataset = project.version(1).download("yolov11")
 
-Albumentations 기반 이미지 증강 + 저장
+### Albumentations 기반 이미지 증강 + 저장
 
 def preprocess_for_yolov11(src_dir, dst_dir):
     # HorizontalFlip, MotionBlur, Resize 등 적용
