@@ -22,9 +22,11 @@ fire_project/
 ```
 ---
 
-##  1. 학습 모델 구성 (YOLOv11 + Albumentations)
+
 
 ###  설치 및 데이터 전처리
+
+##  1. 학습 모델 구성 (YOLOv11 + Albumentations)
 
 ```python
 !git clone https://github.com/ultralytics/ultralytics.git
