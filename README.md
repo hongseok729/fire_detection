@@ -5,10 +5,21 @@ GPT-4를 이용해 감지 상황에 맞는 안전 안내 멘트를 자동으로 
 
 ---
 
+```
+fire_project/
+├── app.py # OpenAI 기반 알림 문장 생성 함수
+├── main.py # Flask 서버 및 실시간 감지/음성 안내 시스템
+├── yolov11s.pt # YOLOv11 사전 학습 모델
+├── yolov11s_5.pt # 학습 완료된 모델
+├── static/
+│ ├── alarm.mp3 # 알림용 사이렌 음원
+│ └── tts.mp3 # TTS로 생성된 안내 음성
+├── templates/
+│ └── index.html # 실시간 감지 결과 웹 페이지
+├── .gitignore
+└── README.md
 
-<pre><code> ``` fire_project/ ├── app.py # GPT 멘트 생성 모듈 ├── main.py # Flask 실시간 감지 웹앱 ├── yolov11s.pt # YOLOv11 원본 모델 ├── yolov11s_5.pt # Fire/Smoke 학습된 모델 ├── static/ │ ├── alarm.mp3 │ ├── style.css │ └── tts.mp3 ├── templates/ │ └── index.html ├── .gitignore └── README.md ``` </code></pre>
-
-
+```
 ---
 
 ##  1. 학습 모델 구성 (YOLOv11 + Albumentations)
